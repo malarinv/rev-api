@@ -4,7 +4,7 @@ from rev.models.order import OrderListPage
 from rev.models.order import Order
 from rev.utils import json_to_df
 from pathlib import Path
-
+import json
 
 class RevClient(BaseClient):
     """
@@ -147,5 +147,5 @@ class RevClient(BaseClient):
                     self.log.error(e)
                     raise
         elif format == 'csv':
-            df = json_to_df(response.content)
-            df.to_csv(path)
+            df = json_to_df(json.loads(response.content))
+            df.to_csv(path, index=False)

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import string
 import traceback
 import pandas as pd
 from configparser import SafeConfigParser
@@ -73,5 +74,7 @@ def json_to_df(content):
                 e.pop('type')
                 e['onset'] = onset
                 e['duration'] = duration
+                e['speaker'] = m['speaker']
+                e['text'] = e.pop('value').translate(str.maketrans('', '', string.punctuation)).lower()
                 all_elements.append(e)
     return pd.DataFrame(all_elements)
