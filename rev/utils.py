@@ -2,9 +2,10 @@
 
 import os
 import traceback
-
+import pandas as pd
 from configparser import SafeConfigParser
 from configparser import Error as ConfigParserError
+from datetime import datetime, timedelta
 
 from rev.exceptions import SettingsFileNotFoundError
 
@@ -51,3 +52,26 @@ def read_settings_file(settings_file_path=None):
         print(traceback.format_exc())
         raise e
     return settings
+
+
+def _to_delta(string):
+    t = datetime.strptime(string, "%H:%M:%S,%f")
+    return timedelta(
+        hours=t.hour,
+        minutes=t.minute,
+        seconds=t.second,
+        microseconds=t.microsecond).total_seconds()
+
+
+def json_to_df(content):
+    all_elements = []
+    for m in content['monologues']:
+        for e in m['elements']:
+            if 'timestamp' in e:
+                onset = _to_delta(e.pop('timestamp'))
+                duration = _to_delta(e.pop('end_timestamp')) - onset
+                e.pop('type')
+                e['onset'] = onset
+                e['duration'] = duration
+                all_elements.append(e)
+    return pd.DataFrame(all_elements)

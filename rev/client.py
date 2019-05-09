@@ -2,6 +2,8 @@ from rev.base_client import BaseClient
 
 from rev.models.order import OrderListPage
 from rev.models.order import Order
+from rev.utils import json_to_df
+from pathlib import Path
 
 
 class RevClient(BaseClient):
@@ -121,6 +123,29 @@ class RevClient(BaseClient):
             try:
                 local_file.write(response.content)
             except Exception as e:
-                self.log.error("Error saving transcript %s to %s" % (transcript_id, path))
+                self.log.error(
+                    "Error saving transcript %s to %s" % (transcript_id, path))
                 self.log.error(e)
                 raise
+
+    def save_order_transcripts(self, order_id, base_path='.', format='csv'):
+        order = self.get_order(order_id)
+        for trans in order.transcripts:
+            path = Path(base_path) / f"{trans.name.split('.')[0]}.{format}"
+            response = self.request_get(
+                url=["attachments", trans.id, "content"],
+                stream=True
+            )
+
+        if format == 'json':
+            with open(path, "wb") as local_file:
+                try:
+                    local_file.write(response.content)
+                except Exception as e:
+                    self.log.error(
+                        "Error saving transcript %s to %s" % (trans.id, path))
+                    self.log.error(e)
+                    raise
+        elif format == 'csv':
+            df = json_to_df(response.content)
+            df.to_csv(path)
