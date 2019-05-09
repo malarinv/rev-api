@@ -128,7 +128,7 @@ class RevClient(BaseClient):
                 self.log.error(e)
                 raise
 
-    def save_order_transcripts(self, order_id, base_path='.', format='csv'):
+    def save_order_transcripts(self, order_id, base_path='.', format='tsv'):
         order = self.get_order(order_id)
         for trans in order.transcripts:
             path = Path(base_path) / f"{trans.name.split('.')[0]}.{format}"
@@ -146,6 +146,6 @@ class RevClient(BaseClient):
                             "Error saving transcript %s to %s" % (trans.id, path))
                         self.log.error(e)
                         raise
-            elif format == 'csv':
+            elif format == 'tsv':
                 df = json_to_df(json.loads(response.content))
-                df.to_csv(path, index=False)
+                df.to_csv(path, index=False, sep='\t')
