@@ -4,7 +4,7 @@ Rev API python client
 Description
 ------------
 
-Python client example for the rev transcription API.
+Python 3 client for the rev transcription API.
 
 See API documentation: http://www.rev.com/api
 

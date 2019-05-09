@@ -2,7 +2,7 @@
 
 """
 This script shows how to create a transcription order.
-To run this script, make sure the settings.ini file at the root of the project is properly filled.
+To run this script, make sure the ~/.rev_settings file is properly filled.
 """
 
 

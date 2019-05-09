@@ -31,7 +31,7 @@ def cleanup_txt(source, dest):
 
 def read_settings_file(settings_file_path=None):
     """
-    Read the settings.ini file located at the root of this project
+    Read the settings file
     """
     # read settings
     if settings_file_path is None:

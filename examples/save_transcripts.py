@@ -3,7 +3,7 @@
 """
 This script shows how to download docx transcripts and transform them to plain text files.
 Results will be stored in /examples/transcripts/
-To run this script, make sure the settings.ini file at the root of the project is properly filled.
+To run this script, make sure the ~/.rev_settings file is properly filled.
 """
 
 import os
