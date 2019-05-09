@@ -56,6 +56,7 @@ def read_settings_file(settings_file_path=None):
 
 
 def _to_delta(string):
+    """ Convert Rev delta string, to seconds """
     t = datetime.strptime(string, "%H:%M:%S,%f")
     return timedelta(
         hours=t.hour,
@@ -65,6 +66,7 @@ def _to_delta(string):
 
 
 def json_to_df(content):
+    """ Parse JSON response, and convert to pandas df """
     all_elements = []
     for m in content['monologues']:
         for e in m['elements']:
