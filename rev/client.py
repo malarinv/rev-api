@@ -137,15 +137,15 @@ class RevClient(BaseClient):
                 stream=True
             )
 
-        if format == 'json':
-            with open(path, "wb") as local_file:
-                try:
-                    local_file.write(response.content)
-                except Exception as e:
-                    self.log.error(
-                        "Error saving transcript %s to %s" % (trans.id, path))
-                    self.log.error(e)
-                    raise
-        elif format == 'csv':
-            df = json_to_df(json.loads(response.content))
-            df.to_csv(path, index=False)
+            if format == 'json':
+                with open(path, "wb") as local_file:
+                    try:
+                        local_file.write(response.content)
+                    except Exception as e:
+                        self.log.error(
+                            "Error saving transcript %s to %s" % (trans.id, path))
+                        self.log.error(e)
+                        raise
+            elif format == 'csv':
+                df = json_to_df(json.loads(response.content))
+                df.to_csv(path, index=False)

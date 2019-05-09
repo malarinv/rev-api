@@ -70,7 +70,7 @@ def json_to_df(content):
     all_elements = []
     for m in content['monologues']:
         for e in m['elements']:
-            if 'timestamp' in e:
+            if 'timestamp' in e and 'end_timestamp' in e:
                 onset = _to_delta(e.pop('timestamp'))
                 duration = _to_delta(e.pop('end_timestamp')) - onset
                 e.pop('type')
