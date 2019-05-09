@@ -9,11 +9,11 @@ class RevClient(BaseClient):
     Access to the Rev API.  Order transcripts, and track their progress
     """
 
-    def __init__(self):
+    def __init__(self, settings_file_path=None):
         """
         Create the api client
         """
-        super(RevClient, self).__init__()
+        super(RevClient, self).__init__(settings_file_path=settings_file_path)
 
     def get_orders_page(self, page=0):
         """

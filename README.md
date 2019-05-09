@@ -17,7 +17,7 @@ Installation
 python setup.py install
 ```
 
-2. Copy settings.example.ini to settings.ini and fill in your credentials and configuration options.
+2. Copy settings.example to ~/.rev_settings and fill in your credentials and configuration options.
 
 
 Usage

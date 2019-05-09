@@ -16,13 +16,14 @@ class BaseClient(object):
     This is the base client, implements basic rest methods
     """
 
-    def __init__(self):
+    def __init__(self, settings_file_path=None):
         """
         Create the api client
         """
 
         # setup settings
-        self.settings = read_settings_file()
+        self.settings = read_settings_file(
+            settings_file_path=settings_file_path)
 
         # setup logger
         self.log = logging.getLogger(__name__)

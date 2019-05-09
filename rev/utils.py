@@ -28,19 +28,23 @@ def cleanup_txt(source, dest):
     """
     raise NotImplementedError("TODO: implement me!")
 
-def read_settings_file():
+
+def read_settings_file(settings_file_path=None):
     """
     Read the settings.ini file located at the root of this project
     """
     # read settings
-    settings_file_path = "settings.ini"
+    if settings_file_path is None:
+        settings_file_path = os.path.expanduser("~/.rev_settings")
     settings = None
     try:
         if os.path.exists(settings_file_path):
             settings = SafeConfigParser()
             settings.read(settings_file_path)
         else:
-            raise SettingsFileNotFoundError("Settings file not found, please copy settings.example.ini to settings.ini and fill in your details")
+            raise SettingsFileNotFoundError(
+                "Settings file not found, please copy settings.example to "
+                f"{settings_file_path} and fill in your details")
     except ConfigParserError as e:
         print("Error parsing settings file: ")
         print(e)
