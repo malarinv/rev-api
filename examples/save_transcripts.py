@@ -19,7 +19,7 @@ order_client_ids = [
 ]
 
 
-print "%i orders to download" % len(order_client_ids)
+print("%i orders to download" % len(order_client_ids))
 nb_downloaded = 0
 
 for client_ref in order_client_ids:
@@ -33,11 +33,11 @@ for client_ref in order_client_ids:
         client_ref
     )
 
-    print "Downloading match %s -- (%i of %i)" % (transcript_id, nb_downloaded+1, len(order_client_ids))
+    print("Downloading match %s -- (%i of %i)" % (transcript_id, nb_downloaded+1, len(order_client_ids)))
     client.save_transcript(
         transcript_id=transcript_id,
         path=local_file_path
     )
     nb_downloaded = nb_downloaded +1
 
-print "%i orders downloaded of %i" % (nb_downloaded, len(order_client_ids))
+print("%i orders downloaded of %i" % (nb_downloaded, len(order_client_ids)))

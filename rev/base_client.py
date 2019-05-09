@@ -32,7 +32,7 @@ class BaseClient(object):
         try:
             self._user_api_key = self.settings.get("credentials", "user_api_key")
             self._client_api_key = self.settings.get("credentials", "client_api_key")
-        except Exception,e:
+        except Exception as e:
             self.log.error("Error getting api_key from settings file")
             self.log.error(e)
             self.log.error(traceback.format_exc())
@@ -40,7 +40,7 @@ class BaseClient(object):
 
         try:
             self.base_path = self.settings.get("base", "paths.api")
-        except Exception,e:
+        except Exception as e:
             self.log.error("Error getting api path from settings file")
             self.log.error(e)
             self.log.error(traceback.format_exc())
@@ -60,7 +60,7 @@ class BaseClient(object):
             path_array.reverse()
             path = '/'.join(path_array)
             return path
-        except Exception, e:
+        except Exception as e:
             self.log.error("Error building path with params:")
             self.log.error(args)
             self.log.error(e)

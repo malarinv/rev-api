@@ -3,8 +3,8 @@
 import os
 import traceback
 
-from ConfigParser import SafeConfigParser
-from ConfigParser import Error as ConfigParserError
+from configparser import SafeConfigParser
+from configparser import Error as ConfigParserError
 
 from rev.exceptions import SettingsFileNotFoundError
 
@@ -41,9 +41,9 @@ def read_settings_file():
             settings.read(settings_file_path)
         else:
             raise SettingsFileNotFoundError("Settings file not found, please copy settings.example.ini to settings.ini and fill in your details")
-    except ConfigParserError, e:
-        print "Error parsing settings file: "
-        print e
-        print traceback.format_exc()
+    except ConfigParserError as e:
+        print("Error parsing settings file: ")
+        print(e)
+        print(traceback.format_exc())
         raise e
     return settings

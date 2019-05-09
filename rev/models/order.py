@@ -168,7 +168,7 @@ class Order(ApiSerializable):
             orders = client.get_orders_page(page=page_nr).orders
             for order in orders:
                 if 'client_ref' in order:
-                    print order['client_ref']
+                    print(order['client_ref'])
                     if len([att for att in order['attachments'] if att['kind']=='transcript']) == 1:
                         if order['client_ref'] == client_ref:
                             att = [att for att in order['attachments'] if att['kind']=='transcript'][0]

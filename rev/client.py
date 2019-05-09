@@ -120,7 +120,7 @@ class RevClient(BaseClient):
         with open(path, "wb") as local_file:
             try:
                 local_file.write(response.content)
-            except Exception, e:
+            except Exception as e:
                 self.log.error("Error saving transcript %s to %s" % (transcript_id, path))
                 self.log.error(e)
                 raise

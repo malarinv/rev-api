@@ -49,7 +49,7 @@ for ref, url, length, filename in media:
         }
     )
     new_order = client.submit_order(order_request=order_request)
-    print "Created new order"
-    print new_order.__dict__
+    print("Created new order")
+    print(new_order.__dict__)
 
-print "Created new order (%i files, %i minutes)" % (len(media), sum([duration[2] for duration in media]))
+print("Created new order (%i files, %i minutes)" % (len(media), sum([duration[2] for duration in media])))
