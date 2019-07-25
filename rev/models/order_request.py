@@ -94,6 +94,7 @@ class TranscriptionOptions(ApiSerializable):
     def __json__(self):
         return {
             'inputs': [input.__json__() for input in self.inputs],
+            'timestamps': self.timestamps
         }
 
 
@@ -102,7 +103,7 @@ class TranscriptionOptions(ApiSerializable):
         @param inputs [Array] list of inputs
         @param info [Hash] of fields to initialize instance. May contain:
         - :verbatim => true/false
-        - :timestams => true/false
+        - :timestamps => true/false
         """
         super(TranscriptionOptions, self).__init__(fields=fields)
         self.inputs = inputs
@@ -115,7 +116,8 @@ class Input(ApiSerializable):
     def __json__(self):
         return {
             'external_link': self.uri,
-            'audio_length': self.audio_length
+            'audio_length_seconds': self.audio_length_seconds,
+            'speakers': self.speakers
         }
 
 

@@ -114,8 +114,8 @@ class RevClient(BaseClient):
         response = self.request_get(
             url=["attachments", transcript_id, "content"],
             headers={
-                'Accept': 'text/plain',
-                'Accept-Charset': 'iso-8859-1'
+                'Accept': 'application/json+rev-transcript',
+                'Accept-Charset': 'utf-8'
             },
             stream=True
         )
