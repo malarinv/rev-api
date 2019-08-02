@@ -94,7 +94,7 @@ class RevClient(BaseClient):
         )
         return response
 
-    def save_transcript(self, transcript_id, path):
+    def save_transcript(self, transcript_id, path, mime_type):
         """
         Get the raw data for the attachment with given id.
         Download the contents of an attachment and save it into a file. Use this method to download either a finished transcript,
@@ -114,7 +114,7 @@ class RevClient(BaseClient):
         response = self.request_get(
             url=["attachments", transcript_id, "content"],
             headers={
-                'Accept': 'application/json+rev-transcript',
+                'Accept': mime_type,
                 'Accept-Charset': 'utf-8'
             },
             stream=True

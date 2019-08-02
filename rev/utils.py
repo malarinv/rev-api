@@ -3,7 +3,6 @@
 import os
 import string
 import traceback
-import pandas as pd
 from configparser import SafeConfigParser
 from configparser import Error as ConfigParserError
 from datetime import datetime, timedelta
@@ -67,6 +66,8 @@ def _to_delta(string):
 
 def json_to_df(content):
     """ Parse JSON response, and convert to pandas df """
+    import pandas as pd
+
     all_elements = []
     for m in content['monologues']:
         for e in m['elements']:
